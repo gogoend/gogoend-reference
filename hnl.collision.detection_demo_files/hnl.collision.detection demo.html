@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)http://code.hnldesign.nl/demo/hnl.collision.detection.html -->
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>hnl.collision.detection demo</title>
+    <link rel="stylesheet" type="text/css" href="./hnl.collision.detection.css">
+    <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./bootstrap-theme.min.css">
+</head>
+
+<body style="">
+
+    <div class="container">
+
+        <div class="row">
+            <div>
+                <button class="btn btn-primary" id="demo1">Demo (defaults)</button>
+                <button class="btn btn-default" id="demo2">No spacing</button>
+                <button class="btn btn-default" id="demo3">10px spacing</button>
+                <button class="btn btn-default" id="demo4">-5px spacing</button>
+                <button class="btn btn-info" id="random">Randomize</button>
+                <button class="btn btn-danger" id="reset">Reset demo</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="gutter animHeight" style="height: 118px;">
+
+                <div class="element color1 animBottom" style="left: 52.6811px; bottom: 0px;">
+                    Testing element #4
+                </div>
+                <div class="element color2 animBottom" style="bottom: 46px; left: 114.305px;">
+                    Testing element #1
+                </div>
+                <div class="element color1 animBottom" style="left: 230.903px; bottom: 0px;">
+                    Testing element #7<br>
+                    multiple lines
+                </div>
+                <div class="element color3 animBottom" style="left: 234.346px; bottom: 74px;">
+                    Testing element #3<br>
+                    multiple lines
+                </div>
+                <div class="element color4 animBottom" style="left: 307.477px; bottom: 46px;">
+                    Testing element #2
+                </div>
+                <div class="element color6 animBottom" style="left: 430.813px; bottom: 0px;">
+                    Testing element #6
+                </div>
+                <div class="element color5 animBottom" style="left: 625.312px; bottom: 0px;">
+                    Testing element #8
+                </div>
+                <div class="element color2 animBottom" style="left: 683.441px; bottom: 46px;">
+                    Testing element #5
+                </div>
+                <div class="element color5 animBottom" style="left: 697.287px; bottom: 74px;">
+                    Testing element #9
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div>
+                <p><small>Click randomize to randomize the absolute positioning of the elements, or click an element to
+                        remove it (permanently),
+                        <br>then re-run one of the demo's.</small></p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="./jquery-1.10.2.min.js"></script>
+    <script src="./modernizr.27161.min.js"></script>
+    <script src="./hnl.collision.detection.min.js"></script>
+    <script>
+        $(document)
+            .on('click', '#demo1', function () {
+                $('.gutter').CollisionDetection();
+            })
+            .on('click', '#demo2', function () {
+                $('.gutter').CollisionDetection({ spacing: 0 });
+            })
+            .on('click', '#demo3', function () {
+                $('.gutter').CollisionDetection({ spacing: 10 });
+            })
+            .on('click', '#demo4', function () {
+                $('.gutter').CollisionDetection({ spacing: -5 });
+            })
+            .on('click', '#reset', function () {
+                $('.element').css({ bottom: '' });
+                $('.gutter').css({ height: '' });
+            })
+            .on('click', '#random', function () {
+                $('.element').each(function (e) {
+                    var posx = (Math.random() * ($('.gutter').width() - $(this).width()).toFixed());
+                    $(this).css('left', posx);
+                });
+            })
+            .on('click', '.element', function () {
+                $(this).remove();
+            });
+    </script>
+
+</body>
+
+</html>
